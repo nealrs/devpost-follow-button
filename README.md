@@ -3,7 +3,7 @@
 ## PNG
 
 ```html
-<img src="icon/devpost-X.png">`
+<img src="icon/devpost-X.png">
 ```
 
 16px ![](icon/devpost-16.png) 32px ![](icon/devpost-32.png) 64px ![](icon/devpost-64.png) 128px ![](icon/devpost-128.png) &hellip; 512px
@@ -11,7 +11,7 @@
 ## SVG
 
 ```html
-<img src="icon/devpost.svg" width="X">`
+<img src="icon/devpost.svg" width="X">
 ```
 
 16px  <img src="icon/devpost.svg" width="16">
@@ -22,7 +22,7 @@
 ## Follow Buttons
 
 ```html
-<iframe src="http://nealrs.github.io/devpost-follow-button/?user=nealrs&type=follow&count=true&size=large" frameborder="0" scrolling="0" width="220px" height="30px"></iframe>`
+<iframe src="http://nealrs.github.io/devpost-follow-button/?user=nealrs&type=follow&count=true&size=large" frameborder="0" scrolling="0" width="220px" height="30px"></iframe>
 ```
 
 <iframe src="http://nealrs.github.io/devpost-follow-button/?user=nealrs&type=follow&count=true&size=large" frameborder="0" scrolling="0" width="220px" height="30px"></iframe>
