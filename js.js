@@ -4,10 +4,22 @@
 /********************
 https://mathiasbynens.be/notes/xhr-responsetype-json
 ********************/
-var devpostAPI = 'https://iii3mdppm7.execute-api.us-east-1.amazonaws.com/prod/UserPortfolioEndpoint/';
+//var devpostUserAPI = 'https://iii3mdppm7.execute-api.us-east-1.amazonaws.com/prod/UserPortfolioEndpoint/';
+//var devpostProjectAPI = 'https://iii3mdppm7.execute-api.us-east-1.amazonaws.com/prod/ProjectEndpoint/';
 var refString="?ref_content=follow_widget&utm_source=follow_widget"
 
-var getJSON = function(url, successHandler, errorHandler) {
+var getJSON = function(type, successHandler, errorHandler) {
+
+  switch (type){
+    case 'follow':
+      url = 'https://iii3mdppm7.execute-api.us-east-1.amazonaws.com/prod/UserPortfolioEndpoint/' + user;
+      break;
+
+    case 'like':
+      url = 'https://iii3mdppm7.execute-api.us-east-1.amazonaws.com/prod/ProjectEndpoint/' + project;
+      break;
+  }
+
 var xhr = typeof XMLHttpRequest != 'undefined'
   ? new XMLHttpRequest()
   : new ActiveXObject('Microsoft.XMLHTTP');
@@ -52,6 +64,7 @@ function addCommas(n) {
 var user = params.user,
     type = params.type,
     count = params.count,
+    project = params.project,
     size = params.size,
     v = params.v,
     head = document.getElementsByTagName('head')[0],
@@ -61,14 +74,28 @@ var user = params.user,
     counter = document.getElementById('gh-count'),
     labelSuffix = ' on Devpost';
     var followers = '';
+    var likes = '';
+    var projectName = '';
 
     /********************
     OK, a little more XHR stuff
     ********************/
-    getJSON(devpostAPI + user, function(data) {
-      followers = data.followers_count;
-      console.log('Followers: ' + followers);
-      counter.innerHTML = addCommas(followers);
+    getJSON(type, function(data) {
+
+      switch (type){
+        case 'follow':
+          followers = data.followers_count;
+          counter.innerHTML = addCommas(followers);
+          console.log('Followers: ' + followers);
+          break;
+
+        case 'like':
+          likes = data.likes_count;
+          //projectName = data.title;
+          counter.innerHTML = addCommas(likes);
+          console.log('Likes: ' + likes);
+          break;
+      }
     }, function(status) {
         console.log('something went wrong');
         return null;
@@ -78,18 +105,39 @@ var user = params.user,
 
 // Show the count if asked
 if (count === 'true' && counter.innerHTML !== null) {
-  counter.setAttribute('aria-label', counter.innerHTML + ' followers' + labelSuffix);
+  switch (type){
+    case 'follow':
+      counter.setAttribute('aria-label', counter.innerHTML + ' followers' + labelSuffix);
+      break;
+
+    case 'like':
+      counter.setAttribute('aria-label', counter.innerHTML + ' likes' + labelSuffix);
+      break;
+  }
+
+
     counter.style.display = 'block';
 }
 
 // Set href to be URL for user
-button.href = 'https://devpost.com/' + user + '/';
+//button.href = 'https://devpost.com/' + user + '/';
 
 // Add the class, change the text label, set count link href
-mainButton.className += ' github-me';
-text.innerHTML = 'Follow @' + user;
-button.href = 'https://devpost.com/' + user + refString;
-counter.href = 'https://devpost.com/' + user + '/followers/' + refString;
+switch (type) {
+  case 'like':
+    mainButton.className += ' github-stargazers';
+    text.innerHTML = 'Like';
+    button.href = 'http://devpost.com/software/' + project + refString;
+    counter.href = 'http://devpost.com/software/' + project + refString + '/#share-and-like';
+    break;
+
+  case 'follow':
+    mainButton.className += ' github-me';
+    text.innerHTML = 'Follow @' + user;
+    button.href = 'https://github.com/' + user + refString;
+    counter.href = 'https://github.com/' + user + '/followers' + refString;
+    break;
+}
 
 button.setAttribute('aria-label', text.innerHTML + labelSuffix);
 

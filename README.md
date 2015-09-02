@@ -38,3 +38,13 @@
 ```
 
 <iframe src="http://nealrs.github.io/devpost-follow-button/?user=nealrs&type=follow&count=false" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+
+
+
+- - - - 
+
+<iframe src="http://nealrs.github.io/devpost-follow-button/?user=nealrs&type=follow&count=true&size=large" frameborder="0" scrolling="0" width="220px" height="30px"></iframe>
+
+<p>
+
+<iframe src="http://nealrs.github.io/devpost-follow-button/?user=nealrs&type=follow&count=false" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
