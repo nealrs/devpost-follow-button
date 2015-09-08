@@ -6,7 +6,7 @@ https://mathiasbynens.be/notes/xhr-responsetype-json
 ********************/
 //var devpostUserAPI = 'https://iii3mdppm7.execute-api.us-east-1.amazonaws.com/prod/UserPortfolioEndpoint/';
 //var devpostProjectAPI = 'https://iii3mdppm7.execute-api.us-east-1.amazonaws.com/prod/ProjectEndpoint/';
-var refString="?ref_content=follow_widget&utm_source=follow_widget"
+var refString="?ref_content=follow_like_button&utm_source=follow_like_button"
 
 var getJSON = function(type, successHandler, errorHandler) {
 
